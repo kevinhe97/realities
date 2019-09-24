@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Experience</title>
+	<meta name="description" content="Sculpting Realities Experience">
+
+    <script src="https://aframe.io/releases/0.9.2/aframe.min.js"></script>
+    <script src="https://unpkg.com/aframe-environment-component@1.1.0/dist/aframe-environment-component.min.js"></script>
+    <script src="https://unpkg.com/aframe-animation-component@^4.1.2/dist/aframe-animation-component.min.js"></script>
+
+</head>
+
+
+
+<body>
+
+
+	<a-scene loading-screen="dotsColor: cyan; backgroundColor: black">
+
+		<a-assets>
+			<a-asset-item id="text1" src="objects/text1.gltf"></a-asset-item>
+			<a-asset-item id="text2" src="objects/text2.gltf"></a-asset-item>
+			<a-asset-item id="text3" src="objects/text3.gltf"></a-asset-item>
+			<a-asset-item id="text4" src="objects/text4.gltf"></a-asset-item>
+			<a-asset-item id="text5" src="objects/text5.gltf"></a-asset-item>
+			<a-asset-item id="text6" src="objects/text6.gltf"></a-asset-item>
+			<a-asset-item id="text7" src="objects/text7.gltf"></a-asset-item>
+			<!-- <a-asset-item id="text8" src="objects/text8.gltf"></a-asset-item>
+			<a-asset-item id="text9" src="objects/text9.gltf"></a-asset-item>
+			<a-asset-item id="text10" src="objects/text10.gltf"></a-asset-item>
+			<a-asset-item id="text11" src="objects/text11.gltf"></a-asset-item>
+			<a-asset-item id="text12" src="objects/text12.gltf"></a-asset-item>
+			<a-asset-item id="text13" src="objects/text13.gltf"></a-asset-item>
+			<a-asset-item id="text14" src="objects/text14.gltf"></a-asset-item>
+			<a-asset-item id="text15" src="objects/text15.gltf"></a-asset-item>
+			<a-asset-item id="text16" src="objects/text16.gltf"></a-asset-item>
+			<a-asset-item id="text17" src="objects/text17.gltf"></a-asset-item>
+			<a-asset-item id="text18" src="objects/text18.gltf"></a-asset-item>
+			<a-asset-item id="text19" src="objects/text19.gltf"></a-asset-item>
+			<a-asset-item id="text20" src="objects/text20.gltf"></a-asset-item>
+			<a-asset-item id="text21" src="objects/text21.gltf"></a-asset-item>
+			<a-asset-item id="text22" src="objects/text22.gltf"></a-asset-item>
+			<a-asset-item id="text23" src="objects/text23.gltf"></a-asset-item>
+			<a-asset-item id="text24" src="objects/text24.gltf"></a-asset-item>
+			<a-asset-item id="text25" src="objects/text25.gltf"></a-asset-item>
+			<a-asset-item id="text26" src="objects/text26.gltf"></a-asset-item>
+			<a-asset-item id="text27" src="objects/text27.gltf"></a-asset-item>
+			<a-asset-item id="text28" src="objects/text28.gltf"></a-asset-item>
+			<a-asset-item id="text29" src="objects/text29.gltf"></a-asset-item>
+			<a-asset-item id="text30" src="objects/text30.gltf"></a-asset-item>
+			<a-asset-item id="text31" src="objects/text31.gltf"></a-asset-item>
+			<a-asset-item id="text32" src="objects/text32.gltf"></a-asset-item>
+			<a-asset-item id="text33" src="objects/text33.gltf"></a-asset-item>
+			<a-asset-item id="text34" src="objects/text34.gltf"></a-asset-item>
+			<a-asset-item id="text35" src="objects/text35.gltf"></a-asset-item>
+			<a-asset-item id="text36" src="objects/text36.gltf"></a-asset-item>
+			<a-asset-item id="text37" src="objects/text37.gltf"></a-asset-item>
+			<a-asset-item id="text38" src="objects/text38.gltf"></a-asset-item> -->
+			<!-- <a-asset-item id="text-period" src="objects/text-period.gltf"></a-asset-item>
+			<a-asset-item id="text-comma" src="objects/text-comma.gltf"></a-asset-item> -->
+		</a-assets>
+
+		<a-entity id="cam" camera look-controls wasd-controls="acceleration: 150" position="0 1.6 0">
+			<a-entity id="reticle" cursor="fuse: true; fuseTimeout: 500"
+            position="0 0 -1"
+            geometry="primitive: ring; radiusInner: 0.01; radiusOuter: 0.015"
+            material="color: cyan; opacity: .5; shader: flat">
+  			</a-entity>
+		</a-entity>
+
+		<a-entity id="landscape" environment="preset:starry"></a-entity>
+
+<!-- 		<a-entity geometry="primitive: box" material="color: black" position="0 0 5"
+              animation__color="property: material.color; dir: alternate; dur: 1000;
+                                easing: easeInSine; loop: true; to: #FFF">
+    	</a-entity>
+ 
+    	<a-entity geometry="primitive: box" material="color: orange" position="0 0 5"
+              animation__fadein="property: material.opacity; dur: 100;
+                                  easing: linear; from 0; to: 1; startEvents: fadeout"
+              animation__fadeout="property: material.opacity; dur: 100;
+                                  easing: linear; from 1; to: 0; startEvents: fadeoin">
+    	</a-entity>
+ 
+    	<a-cylinder color="#F55" radius="0.1" position="0 2 5"
+                animation="property: color; dir: alternate; dur: 1000;
+                           easing: easeInSine; loop: true; to: #5F5"
+                animation__scale="property: scale; dir: alternate; dur: 750;
+                           easing: easeInSine; loop: true; to: 1.2 2 1.2"
+                animation__yoyo="property: position; dir: alternate; dur: 1000;
+                                 easing: easeInSine; loop: true; to: 0 2 5">
+   		 </a-cylinder> -->
+
+		<a-gltf-model id="letter1" src="#text1"></a-gltf-model>
+		<a-gltf-model id="letter2" src="#text2"></a-gltf-model>
+		<a-gltf-model id="letter3" src="#text3"></a-gltf-model>
+		<a-gltf-model id="letter4" src="#text4"></a-gltf-model>
+		<a-gltf-model id="letter5" src="#text5"></a-gltf-model>
+		<a-gltf-model id="letter6" src="#text6"></a-gltf-model>
+		<a-gltf-model id="letter7" src="#text7"></a-gltf-model>
+		<a-obj-model id="trigger" src="objects/LookAtMeNow.obj"></a-obj-model>
+
+
+	</a-scene>
+
+
+
+
+</body>
+
+</html>
