@@ -24,11 +24,17 @@
     </script>
 
     <script>
-    	AFRAME.anime({
-    		targets: '#text1',
-    		setAttribute
-
-    	});
+		AFRAME.registerComponent('cursor-listener', {
+  			init: function () {
+    			var lastIndex = -1;
+    			var COLORS = ['red', 'green', 'blue'];
+    			this.el.addEventListener('click', function (evt) {
+      				lastIndex = (lastIndex + 1) % COLORS.length;
+      				this.setAttribute('material', 'color', COLORS[lastIndex]);
+      				console.log('I was clicked at: ', evt.detail.intersection.point);
+    			});
+  			}
+		});
     </script>
 
 </head>
@@ -100,7 +106,7 @@
 			event-proxy="listen: fuse; target: a-sphere"
 			event-set__enter="_event: mouseenter; scale: 1.2 1.2 1.2"></a-mixin>
 
-		<a-entity id="rig" position="0 10 0">
+		<a-entity id="rig" position="0 7.5 0">
   			<a-entity id="camera" camera look-controls>
   				<a-entity id="reticle"
 				cursor="fuse: true; fuseTimeout: 250; rayOrigin: cursor"
@@ -112,9 +118,9 @@
 		</a-entity>
 
 
-		<a-entity id="landscape" environment="preset:starry; lightPosition: 0 .01 -0.2; groundTexture: none"></a-entity>
+		<a-entity id="landscape" environment="preset:starry; lightPosition: 0 .025 -0.2; groundTexture: none"></a-entity>
 
-		<a-sphere material="color: #29CCFC; blending: additive" position="0 10.5 -3" radius=".1"
+		<a-sphere cursor-listener material="color: #29CCFC; blending: additive" position="0 10.5 -3" radius=".1"
 			mixin="trigger" event-proxy="emit: animationPause">
 		</a-sphere>
 			<!-- animation="property: material.color; dir: alternate; dur: 2500;
