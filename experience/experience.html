@@ -10,7 +10,8 @@
 
     <script src="https://unpkg.com/aframe-animation-component@^4.1.2/dist/aframe-animation-component.min.js"></script>
 
-    <script src="anime.min.js"></script>
+	<script src="https://rawgit.com/protyze/aframe-curve-component/master/dist/aframe-curve-component.min.js"></script> 
+ 	<script src="https://rawgit.com/protyze/aframe-alongpath-component/master/dist/aframe-alongpath-component.min.js"></script>
 
     <script>
     	AFRAME.registerComponent('log', {
@@ -24,16 +25,10 @@
     </script>
 
     <script>
-		AFRAME.registerComponent('cursor-listener', {
-  			init: function () {
-    			var lastIndex = -1;
-    			var COLORS = ['red', 'green', 'blue'];
-    			this.el.addEventListener('click', function (evt) {
-      				lastIndex = (lastIndex + 1) % COLORS.length;
-      				this.setAttribute('material', 'color', COLORS[lastIndex]);
-      				console.log('I was clicked at: ', evt.detail.intersection.point);
-    			});
-  			}
+		AFRAME.registerComponent('refresh', {
+			init: function() {
+				window.location.reload(1500);
+			}
 		});
     </script>
 
@@ -99,20 +94,26 @@
 			<a-asset-item id="letter-comma" src="objects/letter-comma.gltf"></a-asset-item>
 			<a-asset-item id="letter-period" src="objects/letter-period.gltf"></a-asset-item>
 			
+			<a-mixin id="orbit" 
+  			position="0 5.5 0" 
+  			animation__mouseleave="property: rotation; startEvents: mouseleave; to: 360 5.5 0; dur: 10000; easing: linear; fill: backwards; loop: true">
+  			
+  			</a-mixin>
 			
 		</a-assets>
 
-		<a-mixin id="trigger" 
-			event-proxy="listen: fuse; target: a-sphere"
-			event-set__enter="_event: mouseenter; scale: 1.2 1.2 1.2"></a-mixin>
+		
 
 		<a-entity id="rig" position="0 7.5 0">
   			<a-entity id="camera" camera look-controls>
   				<a-entity id="reticle"
-				cursor="fuse: true; fuseTimeout: 250; rayOrigin: cursor"
+				cursor="fuse: true; fuseTimeout: 1000; rayOrigin: cursor"
             	position="0 0 -1"
-            	geometry="primitive: ring; radiusInner: 0.01; radiusOuter: 0.015"
-            	material="color: cyan; opacity: .5; shader: flat">
+            	geometry="primitive: ring; radiusInner: 0.02; radiusOuter: 0.025"
+            	material="color: cyan; opacity: .5; shader: flat"
+            	animation__click="property: scale; startEvents: click; easing: easeInCubic; dur: 150; from: 0.1 0.1 0.1; to: 1 1 1"
+  				animation__fusing="property: scale; startEvents: fusing; easing: easeInCubic; dur: 1000; from: 1 1 1; to: 0.1 0.1 0.1"
+  				animation__mouseleave="property: scale; startEvents: mouseleave; easing: easeInCubic; dur: 250; to: 1 1 1">
   				</a-entity>
   			</a-entity>
 		</a-entity>
@@ -120,88 +121,109 @@
 
 		<a-entity id="landscape" environment="preset:starry; lightPosition: 0 .025 -0.2; groundTexture: none"></a-entity>
 
-		<a-sphere cursor-listener material="color: #29CCFC; blending: additive" position="0 10.5 -3" radius=".1"
-			mixin="trigger" event-proxy="emit: animationPause">
-		</a-sphere>
-			<!-- animation="property: material.color; dir: alternate; dur: 2500;
-            easing: easeInSine; loop: true; to: #b3e538"
-            animation__scale="property: scale; dir: alternate; dur: 500;
-            easing: easeInSine; loop: true; to: 1.2 1.2 1.2" -->
+		<a-box cursor-fusing material="color: green; " position="0 7.75 -3" scale=".25 .25 .25"
+			animation__rotate="property: rotation; startEvents: click; easing: linear; dur: 1500; fill: backwards; to: 0 360 0"
+			animation__refresh="property: refresh; startEvents: click; delay: 1550">
+		</a-box>
 
-  		<a-mixin id="orbit" animation__mouseenter="property: position; startEvents: mouseenter; to: 0 360 0; dur: 2500; loop: true"></a-mixin>
+
+  		<!-- <a-curve id="suppose-track">
+      		<a-curve-point position="3 7.25 -3.5"></a-curve-point>
+      		<a-curve-point position="0 10.25 0"></a-curve-point>
+      		<a-curve-point position="-3 7.25 3.5"></a-curve-point>
+    	</a-curve> -->
+
 
    		<!-- Suppose -->
-		<a-gltf-model id="text1" src="#letter1" mixin="orbit" position="0 8.5 0"></a-gltf-model>
-		<a-gltf-model id="text2" src="#letter2" mixin="orbit" position="0 8.5 0"></a-gltf-model>
-		<a-gltf-model id="text3" src="#letter3" mixin="orbit" position="0 8.5 0"></a-gltf-model>
-		<a-gltf-model id="text4" src="#letter4" mixin="orbit" position="0 8.5 0"></a-gltf-model>
-		<a-gltf-model id="text5" src="#letter5" mixin="orbit" position="0 8.5 0"></a-gltf-model>
-		<a-gltf-model id="text6" src="#letter6" mixin="orbit" position="0 8.5 0"></a-gltf-model>
-		<a-gltf-model id="text7" src="#letter7" mixin="orbit" position="0 8.5 0"></a-gltf-model>
+   		<a-entity id="suppose" mixin="orbit" data-orbitradius="3">
+			<a-gltf-model id="text1" src="#letter1"></a-gltf-model>
+			<a-gltf-model id="text2" src="#letter2"></a-gltf-model>
+			<a-gltf-model id="text3" src="#letter3"></a-gltf-model>
+			<a-gltf-model id="text4" src="#letter4"></a-gltf-model>
+			<a-gltf-model id="text5" src="#letter5"></a-gltf-model>
+			<a-gltf-model id="text6" src="#letter6"></a-gltf-model>
+			<a-gltf-model id="text7" src="#letter7"></a-gltf-model>
+		</a-entity>
 
 		<!-- time -->
-		<a-gltf-model id="text8" src="#letter8" mixin="orbit" position="0 8.5 0"></a-gltf-model>
-		<a-gltf-model id="text9" src="#letter9" mixin="orbit" position="0 8.5 0"></a-gltf-model>
-		<a-gltf-model id="text10" src="#letter10" mixin="orbit" position="0 8.5 0"></a-gltf-model>
-		<a-gltf-model id="text11" src="#letter11" mixin="orbit" position="0 8.5 0"></a-gltf-model>
+		<a-entity id="time" mixin="orbit" data-orbitradius="3">
+			<a-gltf-model id="text8" src="#letter8"></a-gltf-model>
+			<a-gltf-model id="text9" src="#letter9"></a-gltf-model>
+			<a-gltf-model id="text10" src="#letter10"></a-gltf-model>
+			<a-gltf-model id="text11" src="#letter11"></a-gltf-model>
+		</a-entity>
 
 		<!-- is -->
-		<a-gltf-model id="text12" src="#letter12" mixin="orbit" position="0 8.5 0"></a-gltf-model>
-		<a-gltf-model id="text13" src="#letter13" mixin="orbit" position="0 8.5 0"></a-gltf-model>
+		<a-entity id="is" mixin="orbit" data-orbitradius="3">
+			<a-gltf-model id="text12" src="#letter12"></a-gltf-model>
+			<a-gltf-model id="text13" src="#letter13"></a-gltf-model>
+		</a-entity>
 
 		<!-- a -->
-		<a-gltf-model id="text14" src="#letter14" mixin="orbit" position="0 8.5 0"></a-gltf-model>
+		<a-entity id="a" mixin="orbit" data-orbitradius="3">
+			<a-gltf-model id="text14" src="#letter14"></a-gltf-model>
+		</a-entity>
 
 		<!-- circle -->
-		<a-gltf-model id="text15" src="#letter15" mixin="orbit" position="0 8.5 0"></a-gltf-model>
-		<a-gltf-model id="text16" src="#letter16" mixin="orbit" position="0 8.5 0"></a-gltf-model>
-		<a-gltf-model id="text17" src="#letter17" mixin="orbit" position="0 8.5 0"></a-gltf-model>
-		<a-gltf-model id="text18" src="#letter18" mixin="orbit" position="0 8.5 0"></a-gltf-model>
-		<a-gltf-model id="text19" src="#letter19" mixin="orbit" position="0 8.5 0"></a-gltf-model>
-		<a-gltf-model id="text20" src="#letter20" mixin="orbit" position="0 8.5 0"></a-gltf-model>
+		<a-entity id="circle" mixin="orbit" data-orbitradius="3">
+			<a-gltf-model id="text15" src="#letter15"></a-gltf-model>
+			<a-gltf-model id="text16" src="#letter16"></a-gltf-model>
+			<a-gltf-model id="text17" src="#letter17"></a-gltf-model>
+			<a-gltf-model id="text18" src="#letter18"></a-gltf-model>
+			<a-gltf-model id="text19" src="#letter19"></a-gltf-model>
+			<a-gltf-model id="text20" src="#letter20"></a-gltf-model>
+			<a-gltf-model id="text-comma" src="#letter-comma"></a-gltf-model>
+		</a-entity>
 
 		<!-- bending -->
-		<a-gltf-model id="text21" src="#letter21" mixin="orbit" position="0 8.5 0"></a-gltf-model>
-		<a-gltf-model id="text22" src="#letter22" mixin="orbit" position="0 8.5 0"></a-gltf-model>
-		<a-gltf-model id="text23" src="#letter23" mixin="orbit" position="0 8.5 0"></a-gltf-model>
-		<a-gltf-model id="text24" src="#letter24" mixin="orbit" position="0 8.5 0"></a-gltf-model>
-		<a-gltf-model id="text25" src="#letter25" mixin="orbit" position="0 8.5 0"></a-gltf-model>
-		<a-gltf-model id="text26" src="#letter26" mixin="orbit" position="0 8.5 0"></a-gltf-model>
-		<a-gltf-model id="text27" src="#letter27" mixin="orbit" position="0 8.5 0"></a-gltf-model>
+		<a-entity id="bending" mixin="orbit" data-orbitradius="3">
+			<a-gltf-model id="text21" src="#letter21"></a-gltf-model>
+			<a-gltf-model id="text22" src="#letter22"></a-gltf-model>
+			<a-gltf-model id="text23" src="#letter23"></a-gltf-model>
+			<a-gltf-model id="text24" src="#letter24"></a-gltf-model>
+			<a-gltf-model id="text25" src="#letter25"></a-gltf-model>
+			<a-gltf-model id="text26" src="#letter26"></a-gltf-model>
+			<a-gltf-model id="text27" src="#letter27"></a-gltf-model>
+		</a-entity>
 
 		<!-- back -->
-		<a-gltf-model id="text28" src="#letter28" mixin="orbit" position="0 8.5 0"></a-gltf-model>
-		<a-gltf-model id="text29" src="#letter29" mixin="orbit" position="0 8.5 0"></a-gltf-model>
-		<a-gltf-model id="text30" src="#letter30" mixin="orbit" position="0 8.5 0"></a-gltf-model>
-		<a-gltf-model id="text31" src="#letter31" mixin="orbit" position="0 8.5 0"></a-gltf-model>
+		<a-entity id="back" mixin="orbit" data-orbitradius="3">
+			<a-gltf-model id="text28" src="#letter28"></a-gltf-model>
+			<a-gltf-model id="text29" src="#letter29"></a-gltf-model>
+			<a-gltf-model id="text30" src="#letter30"></a-gltf-model>
+			<a-gltf-model id="text31" src="#letter31"></a-gltf-model>
+		</a-entity>
 
 		<!-- on -->
-		<a-gltf-model id="text32" src="#letter32" mixin="orbit" position="0 8.5 0"></a-gltf-model>
-		<a-gltf-model id="text33" src="#letter33" mixin="orbit" position="0 8.5 0"></a-gltf-model>
+		<a-entity id="on" mixin="orbit" data-orbitradius="3">
+			<a-gltf-model id="text32" src="#letter32"></a-gltf-model>
+			<a-gltf-model id="text33" src="#letter33"></a-gltf-model>
+		</a-entity>
 
 		<!-- itself -->
-		<a-gltf-model id="text34" src="#letter34" mixin="orbit" position="0 8.5 0"></a-gltf-model>
-		<a-gltf-model id="text35" src="#letter35" mixin="orbit" position="0 8.5 0"></a-gltf-model>
-		<a-gltf-model id="text36" src="#letter36" mixin="orbit" position="0 8.5 0"></a-gltf-model>
-		<a-gltf-model id="text37" src="#letter37" mixin="orbit" position="0 8.5 0"></a-gltf-model>
-		<a-gltf-model id="text38" src="#letter38" mixin="orbit" position="0 8.5 0"></a-gltf-model>
-		<a-gltf-model id="text39" src="#letter39" mixin="orbit" position="0 8.5 0"></a-gltf-model>
+		<a-entity id="itself" mixin="orbit" data-orbitradius="3">
+			<a-gltf-model id="text34" src="#letter34"></a-gltf-model>
+			<a-gltf-model id="text35" src="#letter35"></a-gltf-model>
+			<a-gltf-model id="text36" src="#letter36"></a-gltf-model>
+			<a-gltf-model id="text37" src="#letter37"></a-gltf-model>
+			<a-gltf-model id="text38" src="#letter38"></a-gltf-model>
+			<a-gltf-model id="text39" src="#letter39"></a-gltf-model>
+		</a-entity>
 
 		<!-- endlessly -->
-		<a-gltf-model id="text40" src="#letter40" mixin="orbit" position="0 8.5 0"></a-gltf-model>
-		<a-gltf-model id="text41" src="#letter41" mixin="orbit" position="0 8.5 0"></a-gltf-model>
-		<a-gltf-model id="text42" src="#letter42" mixin="orbit" position="0 8.5 0"></a-gltf-model>
-		<a-gltf-model id="text43" src="#letter43" mixin="orbit" position="0 8.5 0"></a-gltf-model>
-		<a-gltf-model id="text44" src="#letter44" mixin="orbit" position="0 8.5 0"></a-gltf-model>
-		<a-gltf-model id="text45" src="#letter45" mixin="orbit" position="0 8.5 0"></a-gltf-model>
-		<a-gltf-model id="text46" src="#letter46" mixin="orbit" position="0 8.5 0"></a-gltf-model>
-		<a-gltf-model id="text47" src="#letter47" mixin="orbit" position="0 8.5 0"></a-gltf-model>
-		<a-gltf-model id="text48" src="#letter48" mixin="orbit" position="0 8.5 0"></a-gltf-model>
-
-
-		<a-gltf-model id="text-comma" src="#letter-comma" mixin="orbit" position="0 8.5 0"></a-gltf-model>
-		<a-gltf-model id="text-period" src="#letter-period" mixin="orbit" position="0 8.5 0"></a-gltf-model>
-
+		<a-entity id="endlessly" mixin="orbit" data-orbitradius="3">
+			<a-gltf-model id="text40" src="#letter40"></a-gltf-model>
+			<a-gltf-model id="text41" src="#letter41"></a-gltf-model>
+			<a-gltf-model id="text42" src="#letter42"></a-gltf-model>
+			<a-gltf-model id="text43" src="#letter43"></a-gltf-model>
+			<a-gltf-model id="text44" src="#letter44"></a-gltf-model>
+			<a-gltf-model id="text45" src="#letter45"></a-gltf-model>
+			<a-gltf-model id="text46" src="#letter46"></a-gltf-model>
+			<a-gltf-model id="text47" src="#letter47"></a-gltf-model>
+			<a-gltf-model id="text48" src="#letter48"></a-gltf-model>
+			<a-gltf-model id="text-period" src="#letter-period"></a-gltf-model>
+		</a-entity>
+		
 
 	</a-scene>
 
