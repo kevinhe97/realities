@@ -100,14 +100,14 @@
 			event-proxy="listen: fuse; target: a-sphere"
 			event-set__enter="_event: mouseenter; scale: 1.2 1.2 1.2"></a-mixin>
 
-		<a-entity id="cam" camera look-controls wasd-controls="acceleration: 150; enabled: false" position="0 10 0">
+		<a-camera id="cam" look-controls position="0 10 0">
 			<a-entity id="reticle"
-			cursor="fuse: true; fuseTimeout: 250; rayOrigin: mouse"
+			cursor="fuse: true; fuseTimeout: 250; rayOrigin: cursor"
             position="0 0 -1"
             geometry="primitive: ring; radiusInner: 0.01; radiusOuter: 0.015"
             material="color: cyan; opacity: .5; shader: flat">
   			</a-entity>
-		</a-entity>
+		</a-camera>
 
 		<a-entity id="landscape" environment="preset:starry; lightPosition: 0 .01 -0.2; groundTexture: none"></a-entity>
 
