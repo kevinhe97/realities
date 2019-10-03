@@ -13,25 +13,12 @@
 	<script src="https://rawgit.com/protyze/aframe-curve-component/master/dist/aframe-curve-component.min.js"></script> 
  	<script src="https://rawgit.com/protyze/aframe-alongpath-component/master/dist/aframe-alongpath-component.min.js"></script>
 
- 	<script src="howler.js"></script>
-
     <script>
 		AFRAME.registerComponent('refresh', {
 			init: function() {
 				window.location.reload(1500);
 			}
 		});
-    </script>
-
-    <script>
-    	AFRAME.registerComponent('audial', {
-    		init. function(){
-    			var sound = new Howl({
-  				src: ['im-fine.mp3']
-				});
-				sound.play();
-    		}
-    	});
     </script>
 
 </head>
@@ -116,23 +103,16 @@
   			</a-entity>
 		</a-entity>
 
-		<!-- <a-entity sound="src: #music; autoplay: true; loop: true" playSound></a-sound> -->
+		<a-entity sound="src: #music; autoplay: true; loop: true" playSound></a-sound>
 
 		<a-entity id="landscape" environment="preset:starry; lightPosition: 0 .025 -0.2; groundTexture: none"></a-entity>
 
 		<a-box cursor-fusing material="color: green; " position="0 7.75 -3" scale=".25 .25 .25"
 			animation__rotate="property: rotation; startEvents: click; easing: linear; dur: 1500; fill: backwards; to: 0 360 0"
-			animation__sound="property: sound; startEvents: click; delay: 1550 src: #music; autoplay: true; loop: true">
+			animation__refresh="property: refresh; startEvents: click; delay: 1550">
 		</a-box>
 
-		<!-- animation__refresh="property: refresh; startEvents: click; delay: 1550" -->
-
-  		<!-- <a-curve id="suppose-track">
-      		<a-curve-point position="3 7.25 -3.5"></a-curve-point>
-      		<a-curve-point position="0 10.25 0"></a-curve-point>
-      		<a-curve-point position="-3 7.25 3.5"></a-curve-point>
-    	</a-curve> -->
-
+		<!-- animation__sound="property: sound; startEvents: click; delay: 1550 src: #music; autoplay: true; loop: true" -->
 
    		<!-- Suppose -->
    		<a-entity id="suppose" mixin="orbit" data-orbitradius="3">
