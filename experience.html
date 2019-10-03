@@ -104,13 +104,13 @@
 
 		
 
-		<a-entity id="rig" position="0 5.5 0">
+		<a-entity id="rig" position="0 7.5 0">
   			<a-entity id="camera" camera look-controls>
   				<a-entity id="reticle"
 				cursor="fuse: true; fuseTimeout: 1000; rayOrigin: cursor"
-				raycaster="interval: 500"
+				raycaster="interval: 350"
             	position="0 0 -1"
-            	geometry="primitive: ring; radiusInner: 0.02; radiusOuter: 0.025"
+            	geometry="primitive: ring; radiusInner: 0.01; radiusOuter: 0.015"
             	material="color: cyan; opacity: .5; shader: flat">
   				</a-entity>
   			</a-entity>
