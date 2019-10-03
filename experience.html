@@ -98,7 +98,6 @@
 			<a-mixin id="orbit" 
   			position="0 5.5 0" 
   			animation__enter="property: rotation; startEvents: mouseenter; to: 360 5.5 0; dur: 10000; dir: reverse; easing: linear; loop: true">
-  			
   			</a-mixin>
 			
 		</a-assets>
@@ -117,7 +116,7 @@
   			</a-entity>
 		</a-entity>
 
-		<a-entity audial></a-sound>
+		<a-entity sound="src: #music; autoplay: true; loop: true" playSound></a-sound>
 
 		<a-entity id="landscape" environment="preset:starry; lightPosition: 0 .025 -0.2; groundTexture: none"></a-entity>
 
