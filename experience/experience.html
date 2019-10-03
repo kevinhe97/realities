@@ -14,17 +14,6 @@
  	<script src="https://rawgit.com/protyze/aframe-alongpath-component/master/dist/aframe-alongpath-component.min.js"></script>
 
     <script>
-    	AFRAME.registerComponent('log', {
- 			schema: {type: 'string'},
-
-  			init: function () {
-    			var stringToLog = this.data;
-    			console.log(stringToLog);
-  			}
-		});
-    </script>
-
-    <script>
 		AFRAME.registerComponent('refresh', {
 			init: function() {
 				window.location.reload(1500);
@@ -34,12 +23,9 @@
 
 </head>
 
-
-
 <body>
 
-
-	<a-scene loading-screen="dotsColor: cyan; backgroundColor: black" log="Hello, Scene!">
+	<a-scene loading-screen="dotsColor: cyan; backgroundColor: black">
 
 		<a-assets>
 			<a-asset-item id="letter1" src="objects/letter.gltf"></a-asset-item>
@@ -94,11 +80,11 @@
 			<a-asset-item id="letter-comma" src="objects/letter-comma.gltf"></a-asset-item>
 			<a-asset-item id="letter-period" src="objects/letter-period.gltf"></a-asset-item>
 
-			<audio id="music" src="im-fine.mp3" autoplay loop="true" preload="auto"></audio>
+			<audio id="music" src="im-fine.mp3" autoplay="true" loop="true" preload="auto"></audio>
 			
 			<a-mixin id="orbit" 
   			position="0 5.5 0" 
-  			animation__mouseleave="property: rotation; startEvents: mouseleave; to: 360 5.5 0; dur: 10000; dir: reverse; easing: linear; fill: backwards; loop: true">
+  			animation__mouseenter="property: rotation; startEvents: mouseenter; to: 360 5.5 0; dur: 10000; dir: reverse; easing: linear; loop: true">
   			
   			</a-mixin>
 			
@@ -106,16 +92,13 @@
 
 		
 
-		<a-entity id="rig" position="0 5 0">
+		<a-entity id="rig" position="0 5.5 0">
   			<a-entity id="camera" camera look-controls>
   				<a-entity id="reticle"
 				cursor="fuse: true; fuseTimeout: 1000; rayOrigin: cursor"
             	position="0 0 -1"
             	geometry="primitive: ring; radiusInner: 0.02; radiusOuter: 0.025"
-            	material="color: cyan; opacity: .5; shader: flat"
-            	animation__click="property: scale; startEvents: click; easing: easeInCubic; dur: 150; from: 0.1 0.1 0.1; to: 1 1 1"
-  				animation__fusing="property: scale; startEvents: fusing; easing: easeInCubic; dur: 1000; from: 1 1 1; to: 0.1 0.1 0.1"
-  				animation__mouseleave="property: scale; startEvents: mouseleave; easing: easeInCubic; dur: 250; to: 1 1 1">
+            	material="color: cyan; opacity: .5; shader: flat">
   				</a-entity>
   			</a-entity>
 		</a-entity>
