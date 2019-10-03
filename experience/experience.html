@@ -93,6 +93,8 @@
 
 			<a-asset-item id="letter-comma" src="objects/letter-comma.gltf"></a-asset-item>
 			<a-asset-item id="letter-period" src="objects/letter-period.gltf"></a-asset-item>
+
+			<audio id="music" src="im-fine.mp3" autoplay loop="true" preload="auto"></audio>
 			
 			<a-mixin id="orbit" 
   			position="0 5.5 0" 
@@ -118,6 +120,7 @@
   			</a-entity>
 		</a-entity>
 
+		<a-entity sound="src: #music"></a-sound>
 
 		<a-entity id="landscape" environment="preset:starry; lightPosition: 0 .025 -0.2; groundTexture: none"></a-entity>
 
