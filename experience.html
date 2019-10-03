@@ -97,7 +97,7 @@
 			
 			<a-mixin id="orbit" 
   			position="0 5.5 0" 
-  			animation__mouseleave="property: rotation; startEvents: mouseleave; to: 360 5.5 0; dur: 10000; dir: reverse; easing: linear; loop: true">
+  			animation__enter="property: rotation; startEvents: mouseenter; to: 360 5.5 0; dur: 10000; dir: reverse; easing: linear; loop: true">
   			
   			</a-mixin>
 			
@@ -109,7 +109,7 @@
   			<a-entity id="camera" camera look-controls>
   				<a-entity id="reticle"
 				cursor="fuse: true; fuseTimeout: 1000; rayOrigin: cursor"
-				raycaster="interval: 250"
+				raycaster="interval: 500"
             	position="0 0 -1"
             	geometry="primitive: ring; radiusInner: 0.02; radiusOuter: 0.025"
             	material="color: cyan; opacity: .5; shader: flat">
