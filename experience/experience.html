@@ -96,7 +96,7 @@
 			
 			<a-mixin id="orbit" 
   			position="0 5.5 0" 
-  			animation__mouseleave="property: rotation; startEvents: mouseleave; to: 360 5.5 0; dur: 10000; easing: linear; fill: backwards; loop: true">
+  			animation__mouseleave="property: rotation; startEvents: mouseleave; to: 360 5.5 0; dur: 10000; dir: reverse; easing: linear; fill: backwards; loop: true">
   			
   			</a-mixin>
 			
@@ -104,7 +104,7 @@
 
 		
 
-		<a-entity id="rig" position="0 7.5 0">
+		<a-entity id="rig" position="0 5 0">
   			<a-entity id="camera" camera look-controls>
   				<a-entity id="reticle"
 				cursor="fuse: true; fuseTimeout: 1000; rayOrigin: cursor"
