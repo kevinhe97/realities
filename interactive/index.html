@@ -2,16 +2,14 @@
 <html>
 <head>
 	<title>Audial Interactions</title>
-	<meta name="description" content="Sculpting Realities Experience">
+
+	<meta name="description" content="Sculpting Realities Interactions">
 
     <script src="https://aframe.io/releases/0.9.2/aframe.min.js"></script>
 
     <script src="https://unpkg.com/aframe-environment-component@1.1.0/dist/aframe-environment-component.min.js"></script>
 
     <script src="https://unpkg.com/aframe-animation-component@^4.1.2/dist/aframe-animation-component.min.js"></script>
-
-	<script src="https://rawgit.com/protyze/aframe-curve-component/master/dist/aframe-curve-component.min.js"></script> 
- 	<script src="https://rawgit.com/protyze/aframe-alongpath-component/master/dist/aframe-alongpath-component.min.js"></script>
 
     <script>
 	   AFRAME.registerComponent('listener', {
@@ -34,8 +32,8 @@
 		</a-assets>
 
 
-		<a-entity id="rig" position="0 1.6 0">
-  			<a-entity id="camera" camera="active: true" look-controls position="0 0 0">
+		<a-entity id="rig" position="0 0 0">
+  			<a-entity id="cam" camera="active: true" look-controls position="0 1.35 0">
   				<a-entity id="reticle"
 				cursor="fuse: true; fuseTimeout: 1000; rayOrigin: cursor"
 				raycaster="interval: 500"
@@ -43,20 +41,20 @@
             	geometry="primitive: ring; radiusInner: 0.01; radiusOuter: 0.015"
             	material="color: cyan; opacity: .5; shader: flat">
   				</a-entity>
-                <a-entity hand-controls="hand: left" raycaster="objects: .collidable; far: 5" line="color: cyan; opacity: 0.75" listener></a-entity>
-                <a-entity hand-controls="hand: right" raycaster="objects: .collidable; far: 5" line="color: cyan; opacity: 0.75" listener></a-entity>
   			</a-entity>
 		</a-entity>
 
+        <a-entity hand-controls="hand: left" raycaster="objects: .collidable; far: 5" line="color: cyan; opacity: 0.75"></a-entity>
+        <a-entity hand-controls="hand: right" raycaster="objects: .collidable; far: 5" line="color: cyan; opacity: 0.75"></a-entity>
 
 		<a-entity id="landscape" environment="preset:checkerboard; groundTexture: none"></a-entity>
 
 		
 		<a-entity id="audial-1">
 			<a-gltf-model id="table-1" src="#table" position="0 0 -2.5" rotation="-90 0 0" scale=".0125 .0125 .0125"></a-gltf-model>
-			<a-gltf-model id="headset-1" src="#beats" position="0 .25 -1.5" scale="2.25 2.25 2.25" color="blue" sound ="src: url(its-fine.mp3)">
+			<a-gltf-model id="headset-1" src="#beats" position="0 .25 -1.5" scale="2.25 2.25 2.25" color="blue">
                 <a-entity class="collidable" position="-.045 .25 -.375"></a-entity>
-                <a-entity class="collidable" position=".045 .25 -.375"></a-entity>         
+                <a-entity class="collidable" position=".045 .25 -.375"></a-entity> 
             </a-gltf-model>
 			<a-sphere color="red" position="0 .675 -2.315" scale=".05 .05 .05"
                 animation__yoyo="property: position; dir: alternate; dur: 1000; easing: easeInSine; loop: true; to: 0 .75 -2.315"></a-sphere>
