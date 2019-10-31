@@ -14,15 +14,11 @@
  	<script src="https://rawgit.com/protyze/aframe-alongpath-component/master/dist/aframe-alongpath-component.min.js"></script>
 
     <script>
-	   AFRAME.registerComponent('playSound', {
-            var sound = new Howl({
-                src: ['im-fine.mp3']
+	   AFRAME.registerComponent('listener', {
+            var el = this.el;
+            el.addEventListener('pointdown', function (evt) {
+                 el.setAttribute('sound', !el.getAttribute('sound', playSound()));
             });
-            dependencies: ['raycaster'],
-            init: function() {
-                this.el.addEventListener('raycaster-intersection', function () {
-                    sound.play();
-            }
         });
     </script>
 
@@ -38,7 +34,7 @@
 		</a-assets>
 
 
-		<a-entity id="rig" position="0 1.35 0">
+		<a-entity id="rig" position="0 1.6 0">
   			<a-entity id="camera" camera="active: true" look-controls position="0 0 0">
   				<a-entity id="reticle"
 				cursor="fuse: true; fuseTimeout: 1000; rayOrigin: cursor"
@@ -47,18 +43,18 @@
             	geometry="primitive: ring; radiusInner: 0.01; radiusOuter: 0.015"
             	material="color: cyan; opacity: .5; shader: flat">
   				</a-entity>
+                <a-entity hand-controls="hand: left" raycaster="objects: .collidable; far: 5" line="color: cyan; opacity: 0.75" ></a-entity>
+                <a-entity hand-controls="hand: right" raycaster="objects: .collidable; far: 5" line="color: cyan; opacity: 0.75"></a-entity>
   			</a-entity>
 		</a-entity>
 
 
 		<a-entity id="landscape" environment="preset:checkerboard; groundTexture: none"></a-entity>
 
-        <a-entity laser-controls="hand: left" raycaster="objects: .collidable; far: 5" line="color: cyan; opacity: 0.75"></a-entity>
-        <a-entity laser-controls="hand: right" raycaster="objects: .collidable; far: 5" line="color: cyan; opacity: 0.75"></a-entity>
 		
 		<a-entity id="audial-1">
 			<a-gltf-model id="table-1" src="#table" position="0 0 -2.5" rotation="-90 0 0" scale=".0125 .0125 .0125"></a-gltf-model>
-			<a-gltf-model id="headset-1" src="#beats" position="0 .25 -1.5" scale="2.25 2.25 2.25" color="blue">
+			<a-gltf-model id="headset-1" src="#beats" position="0 .25 -1.5" scale="2.25 2.25 2.25" color="blue" sound ="src: url(its-fine.mp3)">
                 <a-entity class="collidable" position="-.045 .25 -.375"></a-entity>
                 <a-entity class="collidable" position=".045 .25 -.375"></a-entity>         
             </a-gltf-model>
