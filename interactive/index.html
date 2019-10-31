@@ -11,6 +11,13 @@
 
     <script src="https://unpkg.com/aframe-animation-component@^4.1.2/dist/aframe-animation-component.min.js"></script>
 
+    <script src="howler.js"></script>
+    <script>
+        var sound = new Howl({
+            src: ['its-fine.mp3']
+        });
+    </script>
+
     <script>
 	   AFRAME.registerComponent('listener', {
             var el = this.el;
