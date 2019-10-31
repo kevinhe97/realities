@@ -21,7 +21,7 @@
     <script>
 	   AFRAME.registerComponent('listener', {
             var el = this.el;
-            el.addEventListener('pointdown', function (evt) {
+            el.addEventListener('pointup', function (evt) {
                  el.setAttribute('sound', !el.getAttribute('sound', playSound()));
             });
         });
@@ -51,8 +51,9 @@
   			</a-entity>
 		</a-entity>
 
-        <a-entity hand-controls="hand: left" raycaster="objects: .collidable; far: 5" line="color: cyan; opacity: 0.75"></a-entity>
-        <a-entity hand-controls="hand: right" raycaster="objects: .collidable; far: 5" line="color: cyan; opacity: 0.75"></a-entity>
+        <a-entity id="leftHand" hand-controls="left" raycaster="objects: .collidable; far: 5" line="color: cyan; opacity: 0.75"></a-entity>
+        <a-entity id="rightHand" hand-controls="right" raycaster="objects: .collidable; far: 5" line="color: cyan; opacity: 0.75"></a-entity>
+
 
 		<a-entity id="landscape" environment="preset:checkerboard; groundTexture: none"></a-entity>
 
