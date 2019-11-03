@@ -10,8 +10,8 @@
 
     <script src="https://unpkg.com/aframe-animation-component@^4.1.2/dist/aframe-animation-component.min.js"></script>
 
-	<script src="https://rawgit.com/protyze/aframe-curve-component/master/dist/aframe-curve-component.min.js"></script> 
- 	<script src="https://rawgit.com/protyze/aframe-alongpath-component/master/dist/aframe-alongpath-component.min.js"></script>
+
+ 	<script src="howler.js"></script>
 
     <script>
 		AFRAME.registerComponent('refresh', {
@@ -19,6 +19,22 @@
 				window.location.reload(1500);
 			}
 		});
+    </script>
+
+    <script>
+    	AFRAME.registerComponent('sprite', {
+    		var sound = new Howl({
+  				src: ['im-fine.mp3'],
+  				sprite: {
+    				blast: [0, 3000, (loop)],
+    				laser: [4000, 1000],
+    				winner: [6000, 5000]
+  				}
+			});
+
+		// Shoot the laser!
+			sound.play('blast');
+    	});
     </script>
 
 </head>
@@ -103,11 +119,13 @@
   			</a-entity>
 		</a-entity>
 
-		<a-entity sound="src: #music; autoplay: true; loop: true" playSound></a-sound>
+		<!-- <a-entity sound="src: #music; autoplay: true; loop: true" playSound></a-sound> -->
+
+		<!-- <a-entity text="value: Begin Experience" position="0 6 -3" sound="src: url(im-fine.mp3); on: click"></a-entity> -->
 
 		<a-entity id="landscape" environment="preset:starry; lightPosition: 0 .025 -0.2; groundTexture: none"></a-entity>
 
-		<a-box cursor-fusing material="color: green; " position="0 5.75 -3" scale=".25 .25 .25"
+		<a-box sprite cursor-fusing material="color: green; " position="0 5.75 -3" scale=".25 .25 .25"
 			animation__rotate="property: rotation; startEvents: click; easing: linear; dur: 1500; fill: backwards; to: 0 360 0"
 			animation__refresh="property: refresh; startEvents: click; delay: 1550">
 		</a-box>
