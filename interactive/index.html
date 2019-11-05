@@ -14,18 +14,60 @@
     <script src="howler.js"></script>
     <script>
         var sound = new Howl({
-            src: ['its-fine.mp3']
+            src: ['im-fine.mp3']
         });
     </script>
 
     <script>
-	   AFRAME.registerComponent('listener', {
-            var el = this.el;
-            el.addEventListener('pointup', function (evt) {
-                 el.setAttribute('sound', !el.getAttribute('sound', playSound()));
+	    AFRAME.registerComponent('audioPlayer', {
+            // var el = this.el;
+            // document.querySelector('#rightHand').addEventListener(`click`, function (evt) {
+            //     el.setAttribute('sound', !el.getAttribute('sound', playSound()));
+            // });
+
+            // schema: {
+            //     default: '',
+            //     parse: AFRAME.utils.styleParser.parse
+            // },
+
+            // init: function () {
+            //     const data = this.data;
+            //     const el = this.el;
+
+            //     el.addEventListener(data.event, evt => {
+            //     // Create element.
+            //     const spawnEl = document.createElement('a-entity');
+
+            //     // Snap intersection point to grid and offset from center.
+            //     spawnEl.setAttribute('position', evt.detail.intersection.point);
+
+            //     // Set components and properties.
+            //     Object.keys(data).forEach(name => {
+            //         if (name === 'event') { return; }
+            //         AFRAME.utils.entity.setComponentProperty(spawnEl, name, data[name]);
+            //     });
+
+            //     // Append to scene.
+            //     el.sceneEl.appendChild(spawnEl);
+            // });
+        }
+    </script>
+    <script>
+        AFRAME.registerComponent('sprite', {
+            var sound = new Howl({
+                src: ['im-fine.mp3'],
+                sprite: {
+                    blast: [0, 3000, (loop)],
+                    laser: [4000, 1000],
+                    winner: [6000, 5000]
+                }
             });
+
+        // Shoot the laser!
+            sound.play('blast');
         });
     </script>
+    
 
 </head>
 
@@ -48,11 +90,13 @@
             	geometry="primitive: ring; radiusInner: 0.01; radiusOuter: 0.015"
             	material="color: cyan; opacity: .5; shader: flat">
   				</a-entity>
+                <a-cursor id="cursor" intersection="event: click;"></a-cursor>
   			</a-entity>
 		</a-entity>
 
-        <a-entity id="leftHand" hand-controls="left" raycaster="objects: .collidable; far: 5" line="color: cyan; opacity: 0.75"></a-entity>
-        <a-entity id="rightHand" hand-controls="right" raycaster="objects: .collidable; far: 5" line="color: cyan; opacity: 0.75"></a-entity>
+        <a-entity id="leftHand" oculus-touch-controls="left" raycaster="objects: .collidable; far: 5" line="color: cyan; opacity: 0.75"></a-entity>
+        <a-entity id="rightHand" oculus-touch-controls="right" laser-controls
+        raycaster="objects: .collidable; far: 5" line="color: cyan; opacity: 0.75"></a-entity>
 
 
 		<a-entity id="landscape" environment="preset:checkerboard; groundTexture: none"></a-entity>
@@ -60,7 +104,9 @@
 		
 		<a-entity id="audial-1">
 			<a-gltf-model id="table-1" src="#table" position="0 0 -2.5" rotation="-90 0 0" scale=".0125 .0125 .0125"></a-gltf-model>
-			<a-gltf-model id="headset-1" src="#beats" position="0 .25 -1.5" scale="2.25 2.25 2.25" color="blue">
+			<a-gltf-model id="headset-1" src="#beats" position="0 .25 -1.5" scale="2.25 2.25 2.25" color="blue" 
+                sound="src: url(im-fine.mp3) sound="src: url(ticklelaugh.mp3); on: triggerdown 
+                animation__rotate="property: rotation; startEvents: click; easing: linear; dur: 1500; fill: backwards; to: 0 360 0">
                 <a-entity class="collidable" position="-.045 .25 -.375"></a-entity>
                 <a-entity class="collidable" position=".045 .25 -.375"></a-entity> 
             </a-gltf-model>
@@ -70,21 +116,24 @@
 		
 		<a-entity id="audial-2">
 			<a-gltf-model id="table-2" src="#table" position="2.5 0 0" rotation="-90 0 0" scale=".0125 .0125 .0125"></a-gltf-model>
-			<a-gltf-model id="headset-2" src="#beats" position="3.25 .25 0" rotation="0 90 0" scale="2.25 2.25 2.25" material="color:  #ff0000"></a-gltf-model>
+			<a-gltf-model id="headset-2" src="#beats" position="3.25 .25 0" rotation="0 90 0" scale="2.25 2.25 2.25" material="color:  #ff0000"
+                animation__rotate="property: rotation; startEvents: click; easing: linear; dur: 1500; fill: backwards; to: 0 360 0"></a-gltf-model>
 			<a-sphere color="blue" position="2.315 .675 0" scale=".05 .05 .05"
                 animation__yoyo="property: position; dir: alternate; dur: 1000; easing: easeInSine; loop: true; to: 2.315 .75 0"></a-sphere>
 		</a-entity>
 
         <a-entity id="audial-3">
             <a-gltf-model id="table-3" src="#table" position="-2.5 0 0" rotation="-90 0 0" scale=".0125 .0125 .0125"></a-gltf-model>
-            <a-gltf-model id="headset-3" src="#beats" position="-1.5 .25 0" rotation="0 90 0" scale="2.25 2.25 2.25" material="color:  #ff0000"></a-gltf-model>
+            <a-gltf-model id="headset-3" src="#beats" position="-1.5 .25 0" rotation="0 90 0" scale="2.25 2.25 2.25" material="color:  #ff0000"
+                animation__rotate="property: rotation; startEvents: click; easing: linear; dur: 1500; fill: backwards; to: 0 360 0"></a-gltf-model>
             <a-sphere color="green" position="-2.315 .675 0" scale=".05 .05 .05"
                 animation__yoyo="property: position; dir: alternate; dur: 1000; easing: easeInSine; loop: true; to: -2.315 .75 0"></a-sphere>
         </a-entity>
 
         <a-entity id="audial-4">
             <a-gltf-model id="table-4" src="#table" position="0 0 2.5" rotation="-90 0 0" scale=".0125 .0125 .0125"></a-gltf-model>
-            <a-gltf-model id="headset-4" src="#beats" position="0 .25 3.25" scale="2.25 2.25 2.25" material="color:  #ff0000"></a-gltf-model>
+            <a-gltf-model id="headset-4" src="#beats" position="0 .25 3.25" scale="2.25 2.25 2.25" material="color:  #ff0000"
+                animation__rotate="property: rotation; startEvents: click; easing: linear; dur: 1500; fill: backwards; to: 0 360 0"></a-gltf-model>
             <a-sphere color="yellow" position="0 .675 2.315" scale=".05 .05 .05"
                 animation__yoyo="property: position; dir: alternate; dur: 1000; easing: easeInSine; loop: true; to: 0 .75 2.315"></a-sphere>
         </a-entity>
