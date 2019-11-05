@@ -95,7 +95,7 @@
 		</a-entity>
 
         <a-entity id="leftHand" oculus-touch-controls="left" raycaster="objects: .collidable; far: 5" line="color: cyan; opacity: 0.75"></a-entity>
-        <a-entity id="rightHand" oculus-touch-controls="right" laser-controls
+        <a-entity id="rightHand" oculus-touch-controls="right"
         raycaster="objects: .collidable; far: 5" line="color: cyan; opacity: 0.75"></a-entity>
 
 
@@ -105,7 +105,7 @@
 		<a-entity id="audial-1">
 			<a-gltf-model id="table-1" src="#table" position="0 0 -2.5" rotation="-90 0 0" scale=".0125 .0125 .0125"></a-gltf-model>
 			<a-gltf-model id="headset-1" src="#beats" position="0 .25 -1.5" scale="2.25 2.25 2.25" color="blue" 
-                sound="src: url(im-fine.mp3) sound="src: url(ticklelaugh.mp3); on: triggerdown 
+                sound="src: url(im-fine.mp3); on: click" 
                 animation__rotate="property: rotation; startEvents: click; easing: linear; dur: 1500; fill: backwards; to: 0 360 0">
                 <a-entity class="collidable" position="-.045 .25 -.375"></a-entity>
                 <a-entity class="collidable" position=".045 .25 -.375"></a-entity> 
