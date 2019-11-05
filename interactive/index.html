@@ -20,10 +20,13 @@
 
     <script>
 	    AFRAME.registerComponent('audioPlayer', {
-            // var el = this.el;
-            // document.querySelector('#rightHand').addEventListener(`click`, function (evt) {
-            //     el.setAttribute('sound', !el.getAttribute('sound', playSound()));
-            // });
+            init: function () {
+                var el = this.el;
+                el.addEventListener('triggerndown', function (evt) {
+                    el.setAttribute('sound', !el.playSound());
+                });
+            } 
+        });
 
             // schema: {
             //     default: '',
@@ -50,7 +53,6 @@
             //     // Append to scene.
             //     el.sceneEl.appendChild(spawnEl);
             // });
-        }
     </script>
     <script>
         AFRAME.registerComponent('sprite', {
