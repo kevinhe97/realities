@@ -19,7 +19,7 @@
     var t = setTimeout(circTime, 1500);
 
     var textEl = document.getElementById("txt");
-    textEl.setAttribute("value" , "It is currently " + h + ":" + m + ". " + "\nThere are " + dist + " minutes until \nthe next Campus Circulator arrives.");
+    textEl.setAttribute("value" , "The time is " + h + ":" + m + ". " + "\nThere are " + dist + " minutes until \nthe next Campus Circulator arrives.");
 
   }
 
