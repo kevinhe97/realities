@@ -12,12 +12,12 @@
 
 </head>
 
-<body style='margin : 0px; overflow: hidden;'>
+<body style='margin : 0px; overflow: hidden;' onload='circTime()'>
 	<a-scene embedded arjs='sourceType: webcam;'>
 		<a-assets>
 		</a-assets>
     
-        <a-text id="txt" value="hello world" rotation="-90 0 0" position="0 0 0" anchor="align"></a-text>
+        <a-text id="txt" value="hello world" rotation="-90 0 0" position="0 .15 0" anchor="align"></a-text>
         <a-plane rotation="-90 0 0" width="4.5" height="1" position="1.75 0 0" color="#FF7A01"></a-plane>
        
         <!-- type='pattern' patternUrl="pattern/pattern-TIME.patt" -->
