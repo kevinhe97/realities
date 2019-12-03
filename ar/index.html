@@ -13,17 +13,18 @@
 
 </head>
 
-<body style='margin : 0px; overflow: hidden; 'onload='circDist()' >
-	<a-scene embedded arjs='sourceType: webcam; debugUIEnabled: false'>
+<body style='margin : 0px; overflow: hidden;' onload='circDist(); dateTime()'>
+	<a-scene embedded arjs='sourceType: webcam; debugUIEnabled: false;'>
 		<a-assets>
 		</a-assets>
 
-            <!-- <a-marker type='pattern' url="pattern/pattern-TIME.patt">
-                <a-text id="txt-time" value="hello" rotation="-90 0 0" position="0 .15 0" anchor="align"></a-text>
-            </a-marker> -->
-        <a-marker type="pattern" url="pattern/pattern-time.patt">
-            <a-text id="txt-dist" value="world" rotation="-90 0 0" position="0 .15 0" anchor="align"></a-text>
-            <a-plane rotation="-90 0 0" width="4.5" height="1" position="1.75 0 0" color="#FF7A01"></a-plane>
+        <a-marker type='pattern' url="pattern/time.patt">
+            <a-text id="txt-time" value="hello" rotation="-90 0 0" position="-.45 .15 0" anchor="align"></a-text>
+            <a-plane rotation="-90 0 0" width="1" height="1" position="0 0 0" color="#FF7A01"></a-plane>
+        </a-marker>
+        <a-marker type="pattern" url="pattern/dist.patt">
+            <a-text id="txt-dist" value="world" rotation="-90 0 0" position="-1 .15 0" anchor="align"></a-text>
+            <a-plane rotation="-90 0 0" width="2.25" height="1" position="0 0 0" color="navy"></a-plane>
         </a-marker>
 
         <a-entity camera>
