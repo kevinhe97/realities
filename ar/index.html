@@ -9,21 +9,26 @@
     <script src="https://cdn.rawgit.com/jeromeetienne/AR.js/2.0.8/aframe/build/aframe-ar.js"></script>
 
     <script src="eastend.js"></script>
+    <script src="time.js"></script>
 
 </head>
 
-<body style='margin : 0px; overflow: hidden;' onload='circTime()'>
-	<a-scene embedded arjs='sourceType: webcam;'>
+<body style='margin : 0px; overflow: hidden; 'onload='circDist()' >
+	<a-scene embedded arjs='sourceType: webcam; debugUIEnabled: false'>
 		<a-assets>
 		</a-assets>
-    
-        <a-text id="txt" value="hello world" rotation="-90 0 0" position="0 .15 0" anchor="align"></a-text>
-        <a-plane rotation="-90 0 0" width="4.5" height="1" position="1.75 0 0" color="#FF7A01"></a-plane>
-       
-        <!-- type='pattern' patternUrl="pattern/pattern-TIME.patt" -->
+
+            <!-- <a-marker type='pattern' url="pattern/pattern-TIME.patt">
+                <a-text id="txt-time" value="hello" rotation="-90 0 0" position="0 .15 0" anchor="align"></a-text>
+            </a-marker> -->
+        <a-marker type="pattern" url="pattern/pattern-time.patt">
+            <a-text id="txt-dist" value="world" rotation="-90 0 0" position="0 .15 0" anchor="align"></a-text>
+            <a-plane rotation="-90 0 0" width="4.5" height="1" position="1.75 0 0" color="#FF7A01"></a-plane>
+        </a-marker>
+
         <a-entity camera>
-            <a-marker-camera preset='hiro'></a-marker-camera>
         </a-entity>
+
 	</a-scene>
 
 
