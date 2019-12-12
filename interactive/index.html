@@ -6,70 +6,25 @@
 	<meta name="description" content="Sculpting Realities Interactions">
 
     <script src="https://aframe.io/releases/0.9.2/aframe.min.js"></script>
+     <script src="aframe-extras.js"></script>
 
     <script src="https://unpkg.com/aframe-environment-component@1.1.0/dist/aframe-environment-component.min.js"></script>
 
     <script src="https://unpkg.com/aframe-animation-component@^4.1.2/dist/aframe-animation-component.min.js"></script>
 
     <script src="howler.js"></script>
-    <script>
+<!--     <script>
         var sound = new Howl({
             src: ['im-fine.mp3']
         });
     </script>
 
     <script>
-	    AFRAME.registerComponent('audioPlayer', {
-            init: function () {
-                var el = this.el;
-                el.addEventListener('triggerndown', function (evt) {
-                    el.setAttribute('sound', !el.playSound());
-                });
-            } 
-        });
+        var textEl = document.getElementById("txt-dist");
+        textEl.setAttribute("value" , dist + " minutes until \nthe next bus arrives.");
 
-            // schema: {
-            //     default: '',
-            //     parse: AFRAME.utils.styleParser.parse
-            // },
-
-            // init: function () {
-            //     const data = this.data;
-            //     const el = this.el;
-
-            //     el.addEventListener(data.event, evt => {
-            //     // Create element.
-            //     const spawnEl = document.createElement('a-entity');
-
-            //     // Snap intersection point to grid and offset from center.
-            //     spawnEl.setAttribute('position', evt.detail.intersection.point);
-
-            //     // Set components and properties.
-            //     Object.keys(data).forEach(name => {
-            //         if (name === 'event') { return; }
-            //         AFRAME.utils.entity.setComponentProperty(spawnEl, name, data[name]);
-            //     });
-
-            //     // Append to scene.
-            //     el.sceneEl.appendChild(spawnEl);
-            // });
-    </script>
-    <script>
-        AFRAME.registerComponent('sprite', {
-            var sound = new Howl({
-                src: ['im-fine.mp3'],
-                sprite: {
-                    blast: [0, 3000, (loop)],
-                    laser: [4000, 1000],
-                    winner: [6000, 5000]
-                }
-            });
-
-        // Shoot the laser!
-            sound.play('blast');
-        });
-    </script>
-    
+        entity.components.sound.playSound();
+    </script> -->
 
 </head>
 
@@ -80,11 +35,13 @@
 		<a-assets>
 			<a-asset-item id="beats" src="objects/beats.gltf"></a-asset-item>
 			<a-asset-item id="table" src="objects/table.gltf"></a-asset-item>
+
+            <audio id="audio1" src="im-fine.mp3" preload></audio>
 		</a-assets>
 
 
-		<a-entity id="rig" position="0 0 0">
-  			<a-entity id="cam" camera="active: true" look-controls position="0 1.35 0">
+		<a-entity id="rig" position="0 0 0" movement-controls="controls:keyboard, gamepad, touch; speed: 0.2; constrainToNavMesh: true">
+  			<a-entity id="player" camera="active: true; userHeight: 1.35" look-controls="pointerLockEnabled: true" position="0 1.35 0">
   				<a-entity id="reticle"
 				cursor="fuse: true; fuseTimeout: 1000; rayOrigin: cursor"
 				raycaster="interval: 500"
@@ -96,9 +53,8 @@
   			</a-entity>
 		</a-entity>
 
-        <a-entity id="leftHand" oculus-touch-controls="left" raycaster="objects: .collidable; far: 5" line="color: cyan; opacity: 0.75"></a-entity>
-        <a-entity id="rightHand" oculus-touch-controls="right"
-        raycaster="objects: .collidable; far: 5" line="color: cyan; opacity: 0.75"></a-entity>
+        <a-entity id="leftHand" oculus-touch-controls="hand: left; model: true"></a-entity>
+        <a-entity id="rightHand" oculus-touch-controls="hand: right; model: true"></a-entity>
 
 
 		<a-entity id="landscape" environment="preset:checkerboard; groundTexture: none"></a-entity>
@@ -107,7 +63,7 @@
 		<a-entity id="audial-1">
 			<a-gltf-model id="table-1" src="#table" position="0 0 -2.5" rotation="-90 0 0" scale=".0125 .0125 .0125"></a-gltf-model>
 			<a-gltf-model id="headset-1" src="#beats" position="0 .25 -1.5" scale="2.25 2.25 2.25" color="blue" 
-                sound="src: url(im-fine.mp3); on: click" 
+                sound="src:#audio1; on: click" 
                 animation__rotate="property: rotation; startEvents: click; easing: linear; dur: 1500; fill: backwards; to: 0 360 0">
                 <a-entity class="collidable" position="-.045 .25 -.375"></a-entity>
                 <a-entity class="collidable" position=".045 .25 -.375"></a-entity> 
