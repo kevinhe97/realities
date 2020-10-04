@@ -1,0 +1,65 @@
+body {
+	margin: 0;
+	padding: 0;
+	width: 100%;
+	font-family: 'Press Start 2P', cursive;
+	color: #29ccfc;
+	text-decoration: none;
+	display: inline-block;
+
+}
+
+#loading {
+  position: fixed;
+  width: 100vw;
+  height: 100vh;
+  z-index: 10000;
+  background-color: black;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#open {
+	margin: 0 auto;
+	position: relative;
+	align-content: center;
+	background-color: #29ccfc;
+	text-decoration: none;
+	font-size: 7.5vw;
+	width: 50%;
+	height: 25%;
+	border: 5px solid #29ccfc;
+	border-radius: 100px;
+	padding: 4px;
+	z-index: 100;
+}
+	
+#open:hover {
+	color: #29ccfc;
+	background-color: black;
+	transition: ease .5s;
+}
+
+.github-corner:hover{
+	
+	.octo-arm{
+        animation: octocat-wave 560ms ease-in-out
+    }
+
+    @keyframes octocat-wave{
+        0%,100% {
+        	transform:rotate(0)
+      	}
+
+        20%,60% {
+            transform:rotate(-25deg)
+        }
+		40%,80% {
+            transform:rotate(10deg)
+        }
+    }
+
+	@media (max-width:500px)
+	
+}
